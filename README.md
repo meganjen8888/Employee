@@ -106,3 +106,54 @@ UPDATE 10/27/2021, 9:55 PM: The menu has been added.
 
 	}
 ```
+EDIT: That menu didn't work because there were syntax errors in the code. The cases all needed to be in the switch method, and there should be curly brackets around the working parts before I put "break" right outside the curly bracketed functions. Also, I only needed to put in the while(true) thing.
+This is my fixed menu.
+```cpp
+	while (true) {
+		cout << "Enter choice: " << endl;
+		cin >> choice;
+		switch (choice) {
+		case 1:
+		{
+			cout << "Enter the number of employees: " << endl;
+			cin >> numEmployees;
+			for (int i=0;i<numEmployees;i++){
+				Employee e;
+				std::string name = "Employee" + to_string(i);
+				e.setName(name);
+				std::cout << "Inserting: " << e.getName() << std::endl;
+				db.insertEmployee(e);
+			}
+		}
+			break;
+		case 2:
+		{
+			std::cout << "\nDisplay Records" << std::endl;
+			db.displayRecords();
+		}
+			break;
+		case 3:
+		{
+			cout << endl << "Enter the name of the employee to be deleted " << endl;
+			cin >> employeeToBeDeleted;
+			Employee temp = db.searchEmployee(employeeToBeDeleted);
+
+			std::cout << "Deleting: " << temp.getName()  << std::endl;
+			db.deleteEmployee(temp);
+		}
+			break;
+		case 4:
+			std::cout << "\nDisplay Records" << std::endl;
+
+			db.displayRecords();
+			break;
+		case 999:
+			return 0;
+		default:
+			cout << "Invalid input" << endl;
+		}
+
+
+
+	}
+	```
