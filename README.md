@@ -157,3 +157,164 @@ This is my fixed menu.
 
 	}
 ```
+UPDATE AGAIN: I was actually to get the user to enter a name, a number, and a hire date for each employee after they type the number of employees. However, during the production of the new menu, I got into some problems. I changed my remove and search functions in my EmpBinaryTree.cpp, here they are:
+
+```cpp
+//This is my remove function...
+void EmpBinaryTree::remove(Employee e) {
+//Find the node that has the employee info
+    TreeNode* workNode=this->root;
+    while (workNode && (workNode->e.getName()!=e.getName()
+    		|| workNode->e.getNumber()!=e.getNumber()
+			|| workNode->e.getHireDate()!=e.getHireDate()))
+    {// if one of them not matching then keep searching
+
+        if (workNode->e.getName()<e.getName())
+        {
+            workNode=workNode->right;
+        }
+        else
+        {
+            workNode=workNode->left;
+        }
+    }
+    if (workNode!=nullptr) //if workNode is not NULL, then Employee is found
+    {
+        deleteNode(e, workNode);
+//		cout << "jdkasdjklasdjakldjlakdjladjalkdjalkdjlakjda" << endl;
+
+    }
+}
+
+//Here is my search function in EmpBinaryTree.cpp.
+bool EmpBinaryTree::searchEmployee(Employee e) {
+    TreeNode* workNode=this->root;
+    while (workNode)
+    {
+        if (workNode->e.getName()==e.getName() &&
+        	workNode->e.getNumber()==e.getNumber() &&
+			workNode->e.getHireDate()==e.getHireDate())
+        {
+            //this workNode is the node to be deleted
+            break;
+        }
+        else if (workNode->e.getName()<e.getName())
+        {
+            workNode=workNode->right;
+        }
+        else
+        {
+            workNode=workNode->left;
+        }
+    }
+    if (workNode!=nullptr) //if workNode is NULL, then Employee not found
+    {
+        return true;
+
+    }
+    else
+        return false;
+}
+
+```
+I've also updated my menu by using the Employee constructor from Employee.h, with the name, number, and hireDate variables as the arguments. These three variables were defined in the main file to have the user enter information for their employee(s), as well as display them further in the program. 
+
+```cpp
+	int choice;
+	cout << "1. Insert an employee" << endl;
+	cout << "2. Remove an employee" << endl;
+	cout << "3. Search for an employee" << endl;
+	cout << "4. Display all employee records" << endl;
+	cout << "999. Quit" << endl;
+
+	while (true) {
+		cout << "Enter choice: " << endl;
+		cin >> choice;
+		switch (choice) {
+		case 1:
+		{
+			cout << "Enter the number of employees: " << endl;
+			cin >> numEmployees;
+			for (int i=0;i<numEmployees;i++){
+				Employee e;
+				std::string name;
+				string number;
+				std::string hireDate;
+				cout << "Enter the name of the employee." << endl;
+				cin >> name;
+//				e.setName(name);
+				cout << "Enter the employee number. " << endl;
+				cin >> number;
+//				e.setNumber("100");
+				cout << "When was the employee hired?" << endl;
+				cin >> hireDate;
+//				e.setHireDate(hireDate);
+				e=Employee(name,number, hireDate);
+				//std::cout << "Inserting: " << e.getName() << std::endl;
+
+//				cout << e.getName() << endl;
+//				cout << e.getNumber() << endl;
+//				cout << e.getHireDate() << endl;
+
+				db.insertEmployee(e);
+
+			}
+		}
+        cout << "Press a key to continue" << std::endl;
+        cin.get();
+			break;
+		/*case 2:
+		{
+			std::cout << "\nDisplay Records" << std::endl;
+			db.displayRecords();
+		}
+			break;*/
+		case 2:
+		{
+			cout << endl << "Enter the name of the employee to be deleted " << endl;
+			cin >> employeeToBeDeleted;
+			Employee temp = db.searchEmployee(employeeToBeDeleted);
+
+			std::cout << "Deleting: " << temp.getName()  << std::endl;
+			db.deleteEmployee(temp);
+		}
+			break;
+		case 3:
+		{
+			cout << "Enter the name of the employee to search " << endl;
+			cin >> employeeToBeSearched;
+			Employee temp = db.searchEmployee(employeeToBeSearched);
+			if (temp.getName()=="NoSuchEmployee")
+			{
+				std::cout << "No such employee" << std::endl << std::endl;
+			}
+			else
+			{
+            std::cout << "Employee Name: " << temp.getName() << std::endl;
+            std::cout << "Employee Number: " << temp.getNumber() << std::endl;
+            std::cout << "Employee Hire Date: " << temp.getHireDate() << std::endl << std::endl;
+			//std::cout << "Searching: " << temp.getName() << std::endl;
+			}
+            cout << "Press a key to continue" << std::endl;
+            cin.get();
+		}
+		break;
+		case 4:
+			std::cout << "\nDisplay Records" << std::endl;
+
+			db.displayRecords();
+            cout << "Press a key to continue" << std::endl;
+            cin.get();
+			break;
+		case 999:
+			return 0;
+		default:
+			cout << "Invalid input" << endl;
+            cout << "Press a key to continue" << std::endl;
+            cin.get();
+		}
+
+
+
+	}
+```
