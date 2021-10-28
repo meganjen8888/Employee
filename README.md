@@ -36,5 +36,29 @@ The EmpBinary Tree class first defines the function insert, which has two TreeNo
 
 It is stating that if nodePtr is null, then it is defined to the newNode, which is a newly created Employee in the list. The nodePtr pointing to the left is then called null, and so is the nodePtr to the right. The nodePtr represents the location in the Employee list where the new Employee points to.
 
+However if the name of the employee is on the left of the pointer of the name, then the nodePtr will move to the left. 
+
+If none of the conditions in the insert function are happening, then the nodePtr is just inserted to the right.
 
 
+For the destroySubTree class, it only contains one TreeNode object called nodePtr, which is again the pointer of the said node, which is an Employee object for the list. If the nodePtr is to the left of its location, then the function is called for the nodePtr on the left. Same goes with the nodePtr on the right, except it is called with the ptr on the right as an argument. If the nodePtr is on the desired location, then it just gets removed.
+
+The deleteNode function first has an if statement; if nodePtr is null, then it returns a void. However, if the name of the employee object named e is on the left of the nodePtr, then it deletes the employee on the left, since e is an argument of the deleteNode function. If the name of the e employee object is on the right of the nodePtr's employee name, then it calls deleteNode on the e employee object, with the nodePtr to the right. When there are no nodePtrs to the left or the right, the makeDeletion function is called on the nodePtr, and void is returned. 
+
+The makeDeletion function has nodePtr as the only argument. It introduces a TreeNode struct named tempNodePtr, and in the function first sets it as null. If the nodePtr is null, then the program releases a warning, saying it can't delete an empty node.
+
+However, if the nodePtr is set on the left and the nodePtr set on the right is null, or there is nothing in the right of the desired location of the nodePtr, then tempNodePtr struct is set as nodePtr, and nodePtr is set as the pointer to the left. The new struct points to the Employee object's name which is blank at this time, and then the struct itself is set to null.
+
+If the nodePtr is set to the right and there is nothing in the left of the desired location of the node, then the tempNodePtr is set to nodePtr once again, but the nodePtr is pointed to the right. TempNodePtr is once again having the employee object's name set to blank before going null.
+
+If there is nothing in the list, then the nodePtr has the name of the employee object set to blank before the TreeNode object itself goes null.
+
+If none of the events in the destroySubTree class is happening, then the tempNodePtr is set to nodePtr, and another TreeNode object named workPtr is created, and defined as the nodePtr going to the right.
+
+The rightmost child employee info is then to be found to replace the employee info of the node to be deleted.
+
+While the workPtr to the left is not null, the workPtr is repeatedly defined as the workPtr going to the left, until the workPtr to the left is all null. The tempNodePtr object is then having the employee's name set to the workPtr's employee's name.
+
+The workPtr's employee's name is then set to blank, before the TreeNode object itself is declared null. This doesn't delete the node, but it overwrites the node with the employee to be deleted. It's cheaper in performance.
+
+UPDATE 10/27/2021: Added a feature for the user. They can now enter the number of employees to be generated, and enter a name of an employee to be searched and deleted. I am currently making a menu for the main.cpp file.
