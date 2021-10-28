@@ -62,3 +62,47 @@ While the workPtr to the left is not null, the workPtr is repeatedly defined as 
 The workPtr's employee's name is then set to blank, before the TreeNode object itself is declared null. This doesn't delete the node, but it overwrites the node with the employee to be deleted. It's cheaper in performance.
 
 UPDATE 10/27/2021: Added a feature for the user. They can now enter the number of employees to be generated, and enter a name of an employee to be searched and deleted. I am currently making a menu for the main.cpp file.
+
+UPDATE 10/27/2021, 9:55 PM: The menu has been added.
+```cpp
+	int choice;
+	cout >> "Enter choice: "
+	cin << choice;
+	while (choice != 999) {
+		switch (choice) {
+		case 1:
+			cout << "Enter the number of employees: " << endl;
+			cin >> numEmployees;
+			for (int i=0;i<numEmployees;i++){
+				Employee e;
+				std::string name = "Employee" + to_string(i);
+				e.setName(name);
+				std::cout << "Inserting: " << e.getName() << std::endl;
+				db.insertEmployee(e);
+			}
+			break;
+		case 2:
+			std::cout << "\nDisplay Records" << std::endl;
+			db.displayRecords();
+			break;
+		case 3:
+			cout << endl << "Enter the name of the employee to be deleted " << endl;
+			cin >> employeeToBeDeleted;
+			Employee temp = db.searchEmployee(employeeToBeDeleted);
+
+			std::cout << "Deleting: " << temp.getName()  << std::endl;
+			db.deleteEmployee(temp);
+			break;
+		}
+		case 4:
+			std::cout << "\nDisplay Records" << std::endl;
+
+			db.displayRecords();
+			break;
+		case 999:
+			return 0;
+		default:
+			cout << "Invalid input";
+
+	}
+```
