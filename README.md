@@ -217,7 +217,7 @@ bool EmpBinaryTree::searchEmployee(Employee e) {
 }
 
 ```
-I've also updated my menu by using the Employee constructor from Employee.h, with the name, number, and hireDate variables as the arguments. These three variables were defined in the main file to have the user enter information for their employee(s), as well as display them further in the program. 
+I've also updated my menu by using the Employee constructor from Employee.h, with the name, number, and hireDate variables as the arguments. These three variables were defined in the main file to have the user enter information for their employee(s), as well as display them further in the program. I also had the user press any key to continue after each feature in the program to have the menu loop continue to loop until the user presses 999.
 
 ```cpp
 	int choice;
