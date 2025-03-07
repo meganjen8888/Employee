@@ -1,8 +1,29 @@
-# Employee
+# Employee: This project is to store Employee objects using a binary search tree.
 
-This project is to store Employee objects using a binary search tree.
+## Situation:   
+Need to have hands on experience on tree data structure
 
-# Employee Class
+## Task:  
+Create a HR employee management application in C++  to demonstrate a data structure
+
+## Action:
+Research proper data structures to store employee records. 
+Decided to use binary tree to store employee objects which came from employee class
+Define HR operations:
+Add an employee
+Search any employee
+Display employee information
+Delete an employee
+
+3 classes are defined: class Employee EmployeeBinaryTree, ClassEmployeeDB
+
+Object Employee stores employee information, such as employeeNumber, name, hireDate, with getter and setter functions.
+Object EmployeeBindaryTree defines the binary tree, with node of the tree to be an employee and with left and right pointer to the next level of the tree, along with tree traversal functions
+Object EmployeeDB has Object EmployeeBinaryTree as component, along with functions/methods to insert, search, display and delete employee.
+
+# Details:
+
+## Employee Class
 
 It's the Employee.h file, with each object representing a single employee record to be stored.
 
