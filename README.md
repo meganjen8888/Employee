@@ -19,9 +19,9 @@ Delete an employee
 
 class Employee
 
-EmployeeBinaryTree
+class EmployeeBinaryTree
 
-ClassEmployeeDB
+class EmployeeDB
 
 Object Employee stores employee information, such as employeeNumber, name, hireDate, with getter and setter functions.
 Object EmployeeBindaryTree defines the binary tree, with node of the tree to be an employee and with left and right pointer to the next level of the tree, along with tree traversal functions
