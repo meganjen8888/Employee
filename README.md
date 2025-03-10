@@ -25,7 +25,7 @@ class EmployeeDB
 
 Object Employee stores employee information, such as employeeNumber, name, hireDate, with getter and setter functions.
 
-Object EmployeeBindaryTree defines the binary tree, with node of the tree to be an employee and with left and right pointer to the next level of the tree, along with tree traversal functions
+Object EmployeeBinaryTree defines the binary tree, with node of the tree to be an employee and with left and right pointer to the next level of the tree, along with tree traversal functions
 
 Object EmployeeDB has Object EmployeeBinaryTree as component, along with functions/methods to insert, search, display and delete employee.
 
