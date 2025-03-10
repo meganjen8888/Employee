@@ -16,8 +16,11 @@ Display employee information
 Delete an employee
 
 3 classes are defined: 
+
 class Employee
+
 EmployeeBinaryTree
+
 ClassEmployeeDB
 
 Object Employee stores employee information, such as employeeNumber, name, hireDate, with getter and setter functions.
